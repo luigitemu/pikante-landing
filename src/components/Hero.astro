@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import HeroFire from '../images/hero-fire.webp';
+---
+
 <header class="hero">
   <div class="container hero-inner">
     <div class="reveal">
@@ -16,14 +21,6 @@
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#sabores">
-          Comprar ahora
-          <span class="arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M13 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a>
-        <a class="btn btn-ghost" href="#sabores">
           Ver sabores
           <span class="arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -31,6 +28,14 @@
             </svg>
           </span>
         </a>
+        <!-- <a class="btn btn-ghost" href="#sabores">
+          Comprar ahora
+          <span class="arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </a> -->
       </div>
       <div class="hero-meta">
         <div><b>4.9<span style="color:var(--accent)">/5</span></b><span>2,847 resenas</span></div>
@@ -40,7 +45,7 @@
     </div>
 
     <div class="hero-photo reveal" style="transition-delay:.12s">
-      <img src="/assets/hero-fire.webp" alt="Michelada Pikante con flamas" width="1024" height="1536" fetchpriority="high"/>
+      <Image src={HeroFire} alt="Michelada Pikante con flamas" width={1024} height={1536} fetchpriority="high" />
       <span class="photo-tag">SKU-001 &middot; Original 320ml</span>
     </div>
   </div>

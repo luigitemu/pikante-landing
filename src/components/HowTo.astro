@@ -1,5 +1,9 @@
 ---
 import PrepVideo from './PrepVideo.jsx';
+import { Image } from 'astro:assets';
+import ProductLimes from '../images/product-limes.webp';
+import PrepOverhead from '../images/prep-overhead.webp';
+import HeroFire from '../images/hero-fire.webp';
 ---
 <section class="how" id="preparar">
   <div class="container">
@@ -15,7 +19,7 @@ import PrepVideo from './PrepVideo.jsx';
       <article class="step reveal">
         <div class="step-photo">
           <span class="num">01</span>
-          <img src="/assets/product-limes.webp" alt="Escarchar el vaso con limon y chile" width="1024" height="1536" loading="lazy"/>
+          <Image src={ProductLimes} alt="Escarchar el vaso con limon y chile" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="step-body">
           <span class="mono">Paso 01</span>
@@ -26,7 +30,7 @@ import PrepVideo from './PrepVideo.jsx';
       <article class="step reveal" style="transition-delay:.08s">
         <div class="step-photo">
           <span class="num">02</span>
-          <img src="/assets/prep-overhead.webp" alt="Agregar cerveza y Pikante" width="1536" height="1024" loading="lazy"/>
+          <Image src={PrepOverhead} alt="Agregar cerveza y Pikante" width={1536} height={1024} loading="lazy" />
         </div>
         <div class="step-body">
           <span class="mono">Paso 02</span>
@@ -37,7 +41,7 @@ import PrepVideo from './PrepVideo.jsx';
       <article class="step reveal" style="transition-delay:.16s">
         <div class="step-photo">
           <span class="num">03</span>
-          <img src="/assets/hero-fire.webp" alt="Disfrutar la michelada Pikante" width="1024" height="1536" loading="lazy"/>
+          <Image src={HeroFire} alt="Disfrutar la michelada Pikante" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="step-body">
           <span class="mono">Paso 03</span>

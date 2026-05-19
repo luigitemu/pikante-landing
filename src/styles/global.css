@@ -1,4 +1,5 @@
 /* ============ PIKANTÉ — Cinematic Landing ============ */
+@import "tailwindcss";
 
 :root{
   /* Tinted toward amber (hue 35°) so glows read warm, not cold */
@@ -698,7 +699,7 @@ footer{
   display:grid; grid-template-columns: 1.4fr .7fr .7fr 1.2fr; gap:48px;
   padding-bottom:60px; border-bottom:1px solid var(--line);
 }
-.foot-brand img{ height:34px; margin-bottom:18px }
+.foot-brand img{ height:45px; margin-bottom:18px }
 .foot-brand p{ color:#9a9a9a; font-size:13.5px; max-width:280px; margin:0 0 22px }
 .foot-brand .socials{display:flex; gap:8px}
 .foot-brand .socials a{

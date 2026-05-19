@@ -1,6 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import LogoWordmark from '../images/logo-wordmark.webp';
+---
+
 <nav class="nav">
   <a href="#" class="nav-logo" aria-label="Pikante">
-    <img src="/assets/logo-wordmark.webp" alt="Pikante" width="2813" height="1875"/>
+    <Image src={LogoWordmark} alt="Pikante" width={2813} height={1875} />
   </a>
   <div class="nav-links">
     <a href="#sabores">Sabores</a>

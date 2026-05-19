@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import ProductsRow from '../images/products-row.webp';
+---
 <section class="offer">
   <div class="container">
     <div class="offer-card reveal">
@@ -39,7 +43,7 @@
         </div>
 
         <div class="offer-photo">
-          <img src="/assets/products-row.webp" alt="Caja Pikante de 4 botellas" width="1024" height="1536" loading="lazy"/>
+          <Image src={ProductsRow} alt="Caja Pikante de 4 botellas" width={1024} height={1536} loading="lazy" />
         </div>
       </div>
     </div>
