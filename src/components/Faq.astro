@@ -1,0 +1,75 @@
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">07 / Dudas frecuentes</span>
+        <h2>Preguntas<br/><em>obligadas.</em></h2>
+      </div>
+      <p>Lo que la banda nos pregunta antes, durante y despues de la primera botella.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item" data-open="true">
+        <button class="faq-q" aria-expanded="true">
+          <span>Con que cerveza combina?</span>
+          <span class="plus"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Con cualquier cerveza clara o ambar. Le pega rico a la Salva Vida, Barena, Corona, Heineken &mdash; y a las artesanales tipo pilsner. Si la cerveza esta fria, el trago esta listo.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Que tan picante es?</span>
+          <span class="plus"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">El Original pica rico (3/5), el Brutal pica de verdad (5/5), y el Verde esta mas citrico que picosito (2/5). Todos estan calibrados para que disfrutes, no para que sufras.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Tiene alcohol?</span>
+          <span class="plus"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No. Pikante es el mix &mdash; tu le pones la cerveza. La botella sola es 0% alcohol, asi que tambien funciona como base de chamoyada o trago sin alcohol.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Cuanto dura?</span>
+          <span class="plus"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Cerrada: 12 meses en alacena. Abierta: 30 dias refrigerada. Por nuestra experiencia, no le dura ni la primera fiesta.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>Hacen envios?</span>
+          <span class="plus"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">A los 18 departamentos de Honduras. 24-48h habiles. Envio gratis en ordenes mayores a L 399 o con la caja de 4.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.getAttribute('data-open') === 'true';
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.removeAttribute('data-open');
+        i.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item?.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

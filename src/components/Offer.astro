@@ -1,0 +1,61 @@
+<section class="offer">
+  <div class="container">
+    <div class="offer-card reveal">
+      <div class="offer-inner">
+        <div>
+          <span class="eyebrow">06 / Oferta de lanzamiento</span>
+          <h2>Lleva 3<br/>y recibe <em>1 gratis.</em></h2>
+          <p class="lede">Caja de 4 botellas al precio de 3, con envio gratis a todo Honduras. Stock limitado a 1,000 cajas &mdash; cuando se acabe, se acabo.</p>
+
+          <div class="perks">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+              4 botellas Pikante &middot; sabor a elegir
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+              Envio gratis &middot; 24-48h habiles
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+              Garantia: si no te enciende, te devolvemos
+            </div>
+          </div>
+
+          <div class="countdown" aria-label="Tiempo restante de la oferta">
+            <div class="cd-cell"><b id="cd-h">18</b><span>Horas</span></div>
+            <div class="cd-cell"><b id="cd-m">23</b><span>Min</span></div>
+            <div class="cd-cell"><b id="cd-s">00</b><span>Seg</span></div>
+          </div>
+
+          <a class="btn btn-primary" href="#sabores" style="padding:20px 30px">
+            Quiero mi Pikante
+            <span class="arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="offer-photo">
+          <img src="/assets/products-row.webp" alt="Caja Pikante de 4 botellas"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const target = Date.now() + (18 * 3600 + 23 * 60) * 1000;
+  const cdH = document.getElementById('cd-h');
+  const cdM = document.getElementById('cd-m');
+  const cdS = document.getElementById('cd-s');
+  function pad(n: number): string { return String(n).padStart(2, '0'); }
+  setInterval(() => {
+    const diff = Math.max(0, target - Date.now());
+    if (cdH) cdH.textContent = pad(Math.floor(diff / 3600000));
+    if (cdM) cdM.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    if (cdS) cdS.textContent = pad(Math.floor((diff % 60000) / 1000));
+  }, 1000);
+</script>
