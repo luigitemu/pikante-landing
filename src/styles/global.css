@@ -327,13 +327,16 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
 
 /* ============ PREP VIDEO ============ */
 .prep-video{
-  display:grid; grid-template-columns: 1.5fr 1fr; gap:28px;
+  display:grid; grid-template-columns: minmax(0, .85fr) 1fr; gap:28px;
   margin-bottom:48px;
   align-items:stretch;
 }
 .prep-video-frame{
   position:relative;
-  aspect-ratio: 9/8;
+  aspect-ratio: 9/16;
+  max-height: 720px;
+  margin: 0 auto;
+  width: 100%;
   border-radius: var(--rad-lg);
   overflow:hidden;
   border:1px solid var(--line-2);
