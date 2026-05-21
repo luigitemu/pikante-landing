@@ -474,7 +474,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   background-image: radial-gradient(60% 80% at 50% 0%, rgba(255,106,0,.10), transparent 60%);
 }
 .prod-grid{
-  display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+  display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;
 }
 .prod{
   background:var(--char); border:1px solid var(--line);
