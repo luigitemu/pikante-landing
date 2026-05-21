@@ -1,0 +1,121 @@
+---
+const cities = [
+  {
+    city: 'Tegucigalpa',
+    dept: 'Francisco Morazán',
+    code: 'TGU',
+    featured: false,
+    places: [
+      { name: 'Carnicería El Corte', type: 'Carnicería' },
+    ],
+  },
+  {
+    city: 'Gracias',
+    dept: 'Lempira',
+    code: 'GRA',
+    featured: true,
+    places: [
+      { name: 'Texaco Las Torres',        type: 'Estación' },
+      { name: 'Supermercado Denisse',     type: 'Supermercado' },
+      { name: 'Minisuper Yaqui',          type: 'Minisuper' },
+      { name: 'Supermercado Sarahi',      type: 'Supermercado' },
+      { name: 'Supermercado Mi Súper',    type: 'Supermercado' },
+      { name: 'Market Punto Básico',      type: 'Market' },
+      { name: 'Inversiones DAYSA',        type: 'Distribuidora' },
+      { name: 'Restaurante Villa Alicia', type: 'Restaurante' },
+    ],
+  },
+  {
+    city: 'Lepaera',
+    dept: 'Lempira',
+    code: 'LPA',
+    featured: false,
+    places: [
+      { name: "Elena's Bakery", type: 'Panadería' },
+    ],
+  },
+];
+
+const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
+---
+
+<section class="stores" id="proveedores">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">08 / Dónde encontrarlo</span>
+        <h2>Encuéntralo<br/><em>aquí cerca.</em></h2>
+      </div>
+      <p>Pikanté ya está en pulperías, supermercados y restaurantes de tu zona. Si no lo ves en tu tiendita, pídelo — andamos creciendo.</p>
+    </div>
+
+    <div class="stores-block reveal">
+      <div class="stores-block-head">
+        <h3>Puntos de <em>venta</em></h3>
+        <div class="meta">
+          <span><b>{cities.length}</b> ciudades</span>
+          <span>·</span>
+          <span><b>{totalPlaces}</b> puntos activos</span>
+          <span>·</span>
+          <span>Actualizado · May 2026</span>
+        </div>
+      </div>
+
+      <div class="city-grid">
+        {cities.map((c, i) => (
+          <article
+            class={`city-card reveal${c.featured ? ' is-featured' : ''}`}
+            style={`transition-delay:${i * 0.06}s`}
+          >
+            <header class="city-card-head">
+              <span class="city-code">/ {c.code}</span>
+              <div class="city-name">
+                <h4>{c.city}</h4>
+                <span class="city-dept">{c.dept}</span>
+              </div>
+              <span class="city-count" aria-label={`${c.places.length} puntos`}>
+                <b>{String(c.places.length).padStart(2, '0')}</b>
+                <em>punto{c.places.length > 1 ? 's' : ''}</em>
+              </span>
+            </header>
+
+            <ul class="city-places">
+              {c.places.map((p) => (
+                <li class="place">
+                  <span class="place-pin" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/>
+                      <circle cx="12" cy="9" r="2.4"/>
+                    </svg>
+                  </span>
+                  <span class="place-body">
+                    <b class="place-name">{p.name}</b>
+                    <span class="place-type">{p.type}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA — proveedor -->
+    <div class="stores-cta reveal">
+      <div class="stores-cta-text">
+        <h4>¿Tienes una tiendita? <em>Véndela.</em></h4>
+        <p>Únete a la red de proveedores Pikanté. Margen catracho, entregas directas y material para que tu pulpería se prenda.</p>
+      </div>
+      <a class="btn btn-primary" href="#">
+        Quiero vender Pikanté
+        <span class="arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</section>

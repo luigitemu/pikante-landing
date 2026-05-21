@@ -22,7 +22,7 @@ Construida con [Astro](https://astro.build) para maxima velocidad y rendimiento.
 | **Que es** | Explicacion del producto: ingredientes, nivel de picante y facilidad de preparacion |
 | **Sabores** | Catalogo de variantes disponibles (Original, Mango Habanero, etc.) |
 | **Como preparar** | Guia paso a paso para servir la michelada perfecta |
-| **Vida Pikante** | Galeria lifestyle que muestra el producto en contexto |
+| **Vida Pikanté** | Galeria lifestyle que muestra el producto en contexto |
 | **FAQ** | Preguntas frecuentes sobre el producto, envios y conservacion |
 | **Footer** | Links de contacto, redes sociales y aviso legal |
 

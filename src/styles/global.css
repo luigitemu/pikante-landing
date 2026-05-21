@@ -27,6 +27,10 @@
   --accent-soft: color-mix(in oklab, var(--accent) 38%, transparent);
   --accent-glow: color-mix(in oklab, var(--accent) 72%, transparent);
 
+  /* TODO: --text-1 is used by the Stores component but has no value yet.
+     Add a value here, e.g.  --text-1: #f0f0f4;  (near-white, slightly warm) */
+  --text-1: #f0f0f4;
+
   --max: 1440px;
   --gutter: clamp(20px, 4vw, 64px);
 
@@ -329,7 +333,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
 }
 .prep-video-frame{
   position:relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 9/8;
   border-radius: var(--rad-lg);
   overflow:hidden;
   border:1px solid var(--line-2);
@@ -504,6 +508,23 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   border:1px solid var(--line-2); transition:all var(--t-fast);
 }
 .prod-cta:hover{ background:var(--accent); color:#000; border-color:var(--accent) }
+
+.prod-variants{ display:flex; gap:6px; flex-wrap:wrap }
+.variant-pill{
+  flex:none; padding:7px 13px; border-radius:999px;
+  font-family:'JetBrains Mono', monospace; font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase;
+  border:1px solid var(--line-2); background:transparent;
+  color:#8a8a8a; cursor:pointer;
+  transition:all var(--t-fast);
+}
+.variant-pill:hover{ border-color: var(--line-2); color:var(--paper) }
+.variant-pill.active{
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--accent) 18%, transparent);
+}
 @media (max-width:880px){ .prod-grid{grid-template-columns:1fr} }
 
 /* ============ SOCIAL PROOF ============ */
@@ -779,3 +800,264 @@ footer{
 
 /* nav active state */
 .nav-links a.active{ color:var(--accent); }
+
+/* ============ STORES / PROVEEDORES ============ */
+.stores{
+  background:
+    radial-gradient(50% 60% at 80% 0%, rgba(255,122,26,.06), transparent 60%),
+    linear-gradient(180deg, var(--ink-1) 0%, #0d0d12 100%);
+}
+.stores-block{ margin-top:24px }
+.stores-block + .stores-block{ margin-top:80px }
+.stores-block-head{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:24px; flex-wrap:wrap;
+  border-top:1px solid var(--line); padding-top:22px; margin-bottom:28px;
+}
+.stores-block-head h3{
+  font-family:'Anton', sans-serif; font-size:clamp(28px, 3.4vw, 44px);
+  text-transform:uppercase; letter-spacing:.005em; line-height:.95;
+  margin:0; color:var(--text-1);
+}
+.stores-block-head h3 em{
+  font-style:italic; color:var(--accent);
+  text-shadow:0 0 30px var(--accent-soft);
+}
+.stores-block-head .meta{
+  font-family:'JetBrains Mono', monospace; font-size:11px;
+  letter-spacing:.2em; text-transform:uppercase; color:#8e8e98;
+  display:flex; align-items:center; gap:14px;
+}
+.stores-block-head .meta b{
+  color:var(--text-1); font-weight:500;
+  font-family:'JetBrains Mono', monospace;
+}
+
+/* city-card grid — Tegus | Gracias (wide) | Lepaera */
+.city-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.7fr 1fr;
+  gap:16px;
+  align-items:stretch;
+}
+.city-card{
+  position:relative;
+  background:linear-gradient(180deg, var(--ink-3) 0%, var(--ink-2) 100%);
+  border:1px solid var(--line);
+  border-radius: var(--rad);
+  padding:30px 30px 26px;
+  display:flex; flex-direction:column; gap:24px;
+  transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+  box-shadow: 0 20px 40px -30px rgba(0,0,0,.8);
+}
+.city-card:hover{
+  transform: translateY(-3px);
+  border-color: var(--line-2);
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 50px -25px var(--accent-soft);
+}
+.city-card.is-featured{
+  background:
+    radial-gradient(80% 100% at 100% 0%, rgba(255,122,26,.12), transparent 60%),
+    linear-gradient(180deg, #1a0d05 0%, #14080a 100%);
+  border-color: color-mix(in oklab, var(--accent) 30%, var(--line));
+}
+.city-card.is-featured::before{
+  content:"Mayor distribución";
+  position:absolute; top:-1px; right:24px;
+  padding:6px 12px 7px;
+  background: var(--accent); color:#1a0500;
+  font-family:'JetBrains Mono', monospace; font-size:9.5px;
+  letter-spacing:.2em; text-transform:uppercase; font-weight:500;
+  border-radius:0 0 8px 8px;
+  box-shadow: 0 6px 20px -6px var(--accent-glow);
+}
+
+.city-card-head{
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  gap:14px;
+  align-items:center;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.city-code{
+  font-family:'JetBrains Mono', monospace; font-size:10.5px;
+  letter-spacing:.18em; color:#6a6a75;
+  align-self:start; padding-top:6px;
+}
+.city-name h4{
+  font-family:'Anton', sans-serif;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height:.95; margin:0;
+  text-transform:uppercase; letter-spacing:.005em;
+  color: var(--text-1);
+}
+.city-card.is-featured .city-name h4{
+  color: var(--text-1);
+}
+.city-card.is-featured .city-name h4 + .city-dept{ color:var(--accent) }
+.city-dept{
+  display:block; margin-top:4px;
+  font-family:'JetBrains Mono', monospace; font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:#8e8e98;
+}
+.city-count{
+  text-align:right; line-height:1;
+}
+.city-count b{
+  display:block; font-family:'Anton', sans-serif;
+  font-size: 30px; color: var(--text-1);
+}
+.city-count em{
+  display:block; margin-top:4px; font-style:normal;
+  font-family:'JetBrains Mono', monospace; font-size:9.5px;
+  letter-spacing:.2em; text-transform:uppercase; color:#8e8e98;
+}
+
+.city-places{
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-direction:column; gap:2px;
+}
+.place{
+  display:flex; align-items:flex-start; gap:14px;
+  padding:13px 4px;
+  border-bottom:1px dashed rgba(255,255,255,.06);
+  transition: padding var(--t-fast);
+}
+.place:last-child{ border-bottom:0 }
+.place:hover{ padding-left:8px }
+.place-pin{
+  flex:none; width:22px; height:22px;
+  display:flex; align-items:center; justify-content:center;
+  color: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent-soft));
+  margin-top:1px;
+}
+.place-pin svg{ width:18px; height:18px }
+.place-body{
+  display:flex; flex-direction:column; gap:3px; min-width:0;
+}
+.place-name{
+  font-family:'Inter', sans-serif;
+  font-size:15px; font-weight:600; color: var(--text-1);
+  line-height:1.3;
+}
+.place-type{
+  font-family:'JetBrains Mono', monospace; font-size:9.5px;
+  letter-spacing:.2em; text-transform:uppercase; color:#8e8e98;
+}
+
+@media (max-width: 1080px){
+  .city-grid{ grid-template-columns: 1fr 1fr; }
+  .city-card.is-featured{ grid-column: 1 / -1 }
+}
+@media (max-width: 640px){
+  .city-grid{ grid-template-columns: 1fr; }
+  .city-card.is-featured{ grid-column: auto }
+}
+
+/* legacy supermarket logo grid (kept for safety) */
+.super-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;
+}
+.super-tile{
+  position:relative; overflow:hidden;
+  background:linear-gradient(180deg, var(--ink-3) 0%, var(--ink-2) 100%);
+  border:1px solid var(--line); border-radius: var(--rad);
+  padding:36px 32px 22px;
+  min-height:200px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  transition:transform var(--t), border-color var(--t), box-shadow var(--t);
+  box-shadow: 0 20px 40px -30px rgba(0,0,0,.8);
+}
+.super-tile:hover{
+  transform:translateY(-3px);
+  border-color: color-mix(in oklab, var(--accent) 50%, var(--line-2));
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 60px -25px var(--accent-soft);
+}
+.super-tile::before{
+  content:""; position:absolute; left:24px; top:24px;
+  width:6px; height:6px; border-radius:50%;
+  background:var(--accent); box-shadow:0 0 10px var(--accent);
+}
+.super-tile .super-mark{
+  font-family:'Anton', sans-serif;
+  font-size:clamp(28px, 3.2vw, 40px); line-height:.95;
+  text-transform:uppercase; letter-spacing:-.005em;
+  color:var(--text-1);
+  margin:6px 0 0;
+}
+.super-tile .super-mark .accent-bar{
+  display:block; width:36px; height:3px; background:var(--accent);
+  margin-top:14px; box-shadow:0 0 10px var(--accent-soft);
+}
+.super-tile .super-foot{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:12px;
+  font-family:'JetBrains Mono', monospace; font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:#9b9ba6;
+}
+.super-tile .super-foot b{ color:var(--text-1); font-weight:500 }
+.super-tile .super-foot .arrow{
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid var(--line-2);
+  display:flex; align-items:center; justify-content:center;
+  color:#dadae0; transition:all var(--t-fast);
+}
+.super-tile:hover .super-foot .arrow{
+  background:var(--accent); border-color:var(--accent); color:#1a0500;
+}
+.super-tile .super-foot .arrow svg{ width:14px; height:14px }
+@media (max-width:880px){ .super-grid{ grid-template-columns:1fr 1fr } }
+@media (max-width:560px){ .super-grid{ grid-template-columns:1fr } }
+
+/* tienditas chip cloud */
+.tienditas{
+  display:flex; flex-wrap:wrap; gap:10px;
+}
+.tiendita{
+  display:inline-flex; align-items:center; gap:12px;
+  padding:13px 18px 13px 16px;
+  border:1px solid var(--line-2); border-radius:999px;
+  background:rgba(255,255,255,.025);
+  font-size:13.5px; color:#dadae0;
+  transition: all var(--t-fast);
+}
+.tiendita:hover{
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--line-2));
+  background: rgba(255,122,26,.06);
+  color:var(--text-1);
+}
+.tiendita .pin{
+  width:10px; height:10px; border-radius:50%;
+  background:transparent; border:1.5px solid var(--accent);
+  box-shadow: inset 0 0 0 2.5px var(--bg), 0 0 8px var(--accent-soft);
+  flex:none;
+}
+.tiendita b{
+  font-family:'Anton', sans-serif; font-weight:400;
+  font-size:15.5px; text-transform:uppercase; letter-spacing:.02em;
+  color:var(--text-1);
+}
+.tiendita span.city{
+  font-family:'JetBrains Mono', monospace; font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:#8e8e98;
+}
+
+/* CTA strip — become a partner */
+.stores-cta{
+  margin-top:64px; padding:32px 36px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap;
+  border:1px solid color-mix(in oklab, var(--accent) 35%, var(--line));
+  border-radius: var(--rad);
+  background:
+    radial-gradient(80% 120% at 100% 50%, rgba(255,122,26,.10), transparent 60%),
+    linear-gradient(180deg, #150c08 0%, #0c0608 100%);
+}
+.stores-cta-text h4{
+  font-family:'Anton', sans-serif; font-size:clamp(22px, 2.6vw, 30px);
+  text-transform:uppercase; letter-spacing:.005em; margin:0 0 6px;
+  color:var(--text-1);
+}
+.stores-cta-text p{ margin:0; color:#bcbcc6; font-size:14.5px; max-width:520px }
+.stores-cta-text h4 em{ color:var(--accent); font-style:italic }

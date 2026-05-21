@@ -20,14 +20,19 @@ import LifestyleNight from '../images/lifestyle-night.webp';
       <article class="prod reveal">
         <div class="prod-img">
           <span class="prod-tag hot">Mas vendido</span>
-          <Image src={ProductLimes} alt="Pikante Original" width={1024} height={1536} loading="lazy" />
+          <Image src={ProductLimes} alt="Pikanté Original" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="prod-body">
           <div class="prod-row1">
             <h3>Original</h3>
-            <span class="price">L 129 <span style="color:#666">&middot; 320ml</span></span>
+            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:#666">&middot; 570ml</span></span>
           </div>
           <p>El balance clasico: chile de arbol, limon, tamarindo. La puerta de entrada al fuego.</p>
+          <div class="prod-variants">
+            <button class="variant-pill" data-variant="v250">250ml</button>
+            <button class="variant-pill active" data-variant="v570">570ml</button>
+            <button class="variant-pill" data-variant="v1l">1 Litro</button>
+          </div>
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 3 de 5">
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00]' />
@@ -36,8 +41,6 @@ import LifestyleNight from '../images/lifestyle-night.webp';
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00] opacity-50' />
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00] opacity-50' />
             </span>
-            <!-- TODO: Add Cart Feature -->
-            <!-- <button class="prod-cta">Agregar +</button> -->
           </div>
         </div>
       </article>
@@ -45,14 +48,19 @@ import LifestyleNight from '../images/lifestyle-night.webp';
       <article class="prod reveal" style="transition-delay:.07s">
         <div class="prod-img">
           <span class="prod-tag">Edicion 02</span>
-          <Image src={HeroFire} alt="Pikante Brutal" width={1024} height={1536} loading="lazy" />
+          <Image src={HeroFire} alt="Pikanté Brutal" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="prod-body">
           <div class="prod-row1">
             <h3>Brutal</h3>
-            <span class="price">L149 <span style="color:#666">&middot; 320ml</span></span>
+            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:#666">&middot; 570ml</span></span>
           </div>
           <p>Para los que no se andan con rodeos. Habanero ahumado, chile morita, jugo de naranja agria.</p>
+          <div class="prod-variants">
+            <button class="variant-pill" data-variant="v250">250ml</button>
+            <button class="variant-pill active" data-variant="v570">570ml</button>
+            <button class="variant-pill" data-variant="v1l">1 Litro</button>
+          </div>
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 5 de 5">
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00]' />
@@ -61,22 +69,26 @@ import LifestyleNight from '../images/lifestyle-night.webp';
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00]' />
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00]' />
             </span>
-            <!-- <button class="prod-cta">Agregar +</button> -->
           </div>
         </div>
       </article>
       <!-- Verde -->
       <article class="prod reveal" style="transition-delay:.14s">
         <div class="prod-img">
-          <span class="prod-tag">Version suave</span>
-          <Image src={LifestyleNight} alt="Pikante Verde" width={2340} height={4160} loading="lazy" />
+          <span class="prod-tag hot">Muy Pronto</span>
+          <Image src={LifestyleNight} alt="Pikanté Verde" width={2340} height={4160} loading="lazy" />
         </div>
         <div class="prod-body">
           <div class="prod-row1">
-            <h3>Verde</h3>
-            <span class="price">L 129 <span style="color:#666">&middot; 320ml</span></span>
+            <h3>Suave</h3>
+            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:#666">&middot; 570ml</span></span>
           </div>
           <p>Citrico, fresco, jalapeno verde y limon persa. La michelada de las 3pm en la alberca.</p>
+          <div class="prod-variants">
+            <button class="variant-pill" data-variant="v250">250ml</button>
+            <button class="variant-pill active" data-variant="v570">570ml</button>
+            <button class="variant-pill" data-variant="v1l">1 Litro</button>
+          </div>
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 2 de 5">
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00]' />
@@ -85,10 +97,29 @@ import LifestyleNight from '../images/lifestyle-night.webp';
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00] opacity-50' />
               <Flame width={16} height={16} fill="currentColor" class='text-[#ff6a00] opacity-50' />
             </span>
-            <!-- <button class="prod-cta">Agregar +</button> -->
           </div>
         </div>
       </article>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.prod').forEach((card) => {
+    const pills = card.querySelectorAll<HTMLButtonElement>('.variant-pill');
+    const priceEl = card.querySelector<HTMLElement>('.price');
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const key = pill.dataset.variant as string;
+        if (priceEl && priceEl.dataset[key]) {
+          const [amount, size] = priceEl.dataset[key]!.split(' · ');
+          priceEl.innerHTML = `${amount} <span style="color:#666">&middot; ${size}</span>`;
+        }
+      });
+    });
+  });
+</script>
