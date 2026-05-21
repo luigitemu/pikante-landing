@@ -1,6 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import HeroFire from '../images/hero-fire.webp';
+// import { Image } from 'astro:assets';
+// import HeroFire from '../images/hero-fire.webp';
+import PrepVideo from './PrepVideo';
 ---
 
 <header class="hero">
@@ -43,11 +44,12 @@ import HeroFire from '../images/hero-fire.webp';
         <div><b>HN</b><span>Hecho en Honduras</span></div>
       </div>
     </div>
-
-    <div class="hero-photo reveal" style="transition-delay:.12s">
+    <PrepVideo client:visible />
+    <!-- <div class="hero-photo reveal" style="transition-delay:.12s">
       <Image src={HeroFire} alt="Michelada Pikanté con flamas" width={1024} height={1536} fetchpriority="high" loading="eager" />
+      
       <span class="photo-tag">SKU-001 &middot; Original 320ml</span>
-    </div>
+    </div> -->
   </div>
-  <div class="hero-corner">Scroll &middot; Encender</div>
+  <!-- <div class="hero-corner">Scroll &middot; Encender</div> -->
 </header>

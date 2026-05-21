@@ -257,8 +257,10 @@ nav.nav{
 }
 .marquee span{
   font-family:'Anton', sans-serif; font-size:34px;
-  letter-spacing:.02em; text-transform:uppercase; color:oklch(11% 0.008 260deg);
+  letter-spacing:.02em; text-transform:uppercase; color:oklch(20% 0.008 260deg);
   -webkit-text-stroke: 1px oklch(16% 0.008 260deg);
+  user-select: none;
+  
 }
 .marquee span.fire{ color:var(--accent); -webkit-text-stroke:0 }
 .marquee .dot{
@@ -344,6 +346,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   display:grid; grid-template-columns: minmax(0, .85fr) 1fr; gap:28px;
   margin-bottom:48px;
   align-items:stretch;
+  width:100%;
 }
 .prep-video-frame{
   position:relative;
@@ -402,6 +405,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   display:flex; flex-direction:column; justify-content:center;
   gap:18px;
   box-shadow: 0 20px 40px -30px rgba(0,0,0,.8);
+  align-items: center;
 }
 .prep-video-side .mono{ color:var(--accent); }
 .prep-video-side h3{
