@@ -140,17 +140,17 @@ nav.nav{
 .btn-primary{
   background:linear-gradient(180deg, color-mix(in oklab, var(--accent) 92%, #fff) 0%, var(--accent) 100%);
   color:#1a0500;
-  box-shadow:
+  /* box-shadow:
     inset 0 1px 0 rgba(255,255,255,.35),
     0 0 0 1px color-mix(in oklab, var(--accent) 80%, #000),
-    0 16px 50px -8px var(--accent-glow);
+    0 16px 50px -8px var(--accent-glow); */
 }
-.btn-primary:hover{
+/* .btn-primary:hover{
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.45),
     0 0 0 1px color-mix(in oklab, var(--accent) 80%, #000),
     0 20px 60px -8px var(--accent-glow);
-}
+} */
 .btn-ghost{
   background:rgba(255,255,255,.04); color:var(--text-1);
   box-shadow:inset 0 0 0 1px var(--line-2);
@@ -175,6 +175,7 @@ nav.nav{
 .hero-inner{
   display:grid; grid-template-columns: 1.05fr .95fr; gap:60px;
   align-items:end; min-height:calc(100vh - 200px);
+  grid-template-columns: 1fr; text-align: center; justify-items: center;
 }
 .hero-eyebrow-row{
   display:flex; gap:24px; align-items:center; margin-bottom:34px;
