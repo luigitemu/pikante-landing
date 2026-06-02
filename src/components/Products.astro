@@ -2,7 +2,6 @@
 import { Flame } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import ProductLimes from '../images/product-limes.webp';
-import HeroFire from '../images/hero-fire.webp';
 import LifestyleNight from '../images/lifestyle-night.webp';
 ---
 
@@ -11,23 +10,21 @@ import LifestyleNight from '../images/lifestyle-night.webp';
     <div class="section-head reveal">
       <div>
         <span class="eyebrow">03 / Sabores</span>
-        <h2>Elige tu<br/><em>temperatura.</em></h2>
+        <h2>Elegí tu<br/><em>PIKANTÉ favorito</em></h2>
       </div>
-      <p>Tres botellas. Tres formas de prender el rato. Todas hechas con la misma obsesion por el balance.</p>
+      <p>Dos sabores. Tres presentaciones. Diferentes formas de prender.</p>
     </div>
     <div class="prod-grid">
       <!-- Original -->
       <article class="prod reveal">
         <div class="prod-img">
-          <span class="prod-tag hot">Mas vendido</span>
-          <Image src={ProductLimes} alt="Pikanté Original" width={1024} height={1536} loading="lazy" />
+          <span class="prod-tag hot">Más vendido</span>
+          <Image src={ProductLimes} alt="PIKANTÉ Original" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="prod-body">
-          <div class="prod-row1">
-            <h3>Original</h3>
-            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          </div>
-          <p>El balance clasico: chile de arbol, limon, tamarindo. La puerta de entrada al fuego.</p>
+          <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
+          <h3>Original</h3>
+          <p>El balance perfecto entre picante y suave.</p>
           <div class="prod-variants">
             <button class="variant-pill" data-variant="v250">250ml</button>
             <button class="variant-pill active" data-variant="v570">570ml</button>
@@ -38,8 +35,8 @@ import LifestyleNight from '../images/lifestyle-night.webp';
               <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
               <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
               <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
             </span>
           </div>
         </div>
@@ -48,7 +45,7 @@ import LifestyleNight from '../images/lifestyle-night.webp';
       <!-- <article class="prod reveal" style="transition-delay:.07s">
         <div class="prod-img">
           <span class="prod-tag">Edicion 02</span>
-          <Image src={HeroFire} alt="Pikanté Brutal" width={1024} height={1536} loading="lazy" />
+          <Image src={HeroFire} alt="PIKANTÉ Brutal" width={1024} height={1536} loading="lazy" />
         </div>
         <div class="prod-body">
           <div class="prod-row1">
@@ -75,14 +72,12 @@ import LifestyleNight from '../images/lifestyle-night.webp';
       <!-- Verde -->
       <article class="prod reveal" style="transition-delay:.14s">
         <div class="prod-img">
-          <Image src={LifestyleNight} alt="Pikanté Verde" width={2340} height={4160} loading="lazy" />
+          <Image src={LifestyleNight} alt="PIKANTÉ Verde" width={2340} height={4160} loading="lazy" />
         </div>
         <div class="prod-body">
-          <div class="prod-row1">
-            <h3>Suave</h3>
-            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          </div>
-          <p>Citrico, fresco, jalapeno verde y limon persa. La michelada de las 3pm en la alberca.</p>
+          <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
+          <h3>Suave</h3>
+          <p>Algo suave diseñado para tu paladar a base de clamato, picor suave, limón y salsas especiales.</p>
           <div class="prod-variants">
             <button class="variant-pill" data-variant="v250">250ml</button>
             <button class="variant-pill active" data-variant="v570">570ml</button>
@@ -91,10 +86,10 @@ import LifestyleNight from '../images/lifestyle-night.webp';
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 2 de 5">
               <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-50 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
             </span>
           </div>
         </div>
