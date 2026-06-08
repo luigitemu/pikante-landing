@@ -444,10 +444,10 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 50px -25px var(--accent-soft);
 }
 .step-photo{
-  aspect-ratio: 4/3; overflow:hidden; position:relative;
+  height:320px; overflow:hidden; position:relative;
   background:var(--char);
 }
-.step-photo img{width:100%; height:100%; object-fit:cover; transition:transform 1s ease}
+.step-photo img{width:100%; height:100%; object-fit:cover; object-position:center 30%; transition:transform 1s ease;}
 .step:hover .step-photo img{transform:scale(1.05)}
 .step-photo::after{
   content:""; position:absolute; inset:0;
