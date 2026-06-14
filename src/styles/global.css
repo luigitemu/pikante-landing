@@ -81,7 +81,7 @@ body::after{
 }
 .mono{
   font-family:'JetBrains Mono', ui-monospace, monospace;
-  font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  font-size:14px; letter-spacing:.18em; text-transform:uppercase;
 }
 .eyebrow{
   display:inline-flex; align-items:center; gap:10px;
@@ -109,7 +109,7 @@ nav.nav{
   backdrop-filter:blur(8px);
 }
 .nav-logo{display:flex; align-items:center; gap:10px}
-.nav-logo img{height:26px; width:auto}
+.nav-logo img{height:40px; width:auto}
 .nav-links{display:flex; gap:32px}
 .nav-links a{
   font-size:13px; letter-spacing:.06em; color:var(--text-2);
@@ -251,7 +251,7 @@ nav.nav{
 }
 .marquee-track{
   display:flex; gap:60px; white-space:nowrap;
-  animation: scroll 38s linear infinite; width:max-content;
+  animation: scroll 20s linear infinite; width:max-content;
 }
 .marquee span{
   font-family:'Anton', sans-serif; font-size:34px;
@@ -465,7 +465,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   font-family:'Anton', sans-serif; font-size:32px; text-transform:uppercase;
   margin:12px 0 12px; letter-spacing:.005em; color:var(--paper);
 }
-.step-body p{margin:0; color:var(--text-2); font-size:15px; line-height:1.6}
+.step-body p{margin:0; color:var(--text-2); font-size:16px; line-height:1.6; text-align:justify;}
 @media (max-width:880px){ .steps{grid-template-columns:1fr} }
 
 /* ============ PRODUCTS ============ */
@@ -512,7 +512,7 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
   font-family:'JetBrains Mono', monospace; font-size:26px;
   color:var(--paper); white-space:nowrap;
 }
-.prod-body p{ margin:0; color:var(--text-3); font-size:13.5px }
+.prod-body p{ margin:0; color:var(--text-3); font-size:16px }
 .prod-row2{ display:flex; justify-content:space-between; align-items:center; gap:10px}
 .chiles{display:inline-flex; gap:3px; align-items:center}
 .chile{ width:14px; height:14px; position:relative; opacity:.25 }
@@ -528,12 +528,13 @@ section{padding: clamp(80px, 10vw, 140px) 0; position:relative}
 
 .prod-variants{ display:flex; gap:6px; flex-wrap:wrap }
 .variant-pill{
-  flex:none; padding:7px 13px; border-radius:999px;
+  flex:none; padding:12px 16px; border-radius:999px;
   font-family:'JetBrains Mono', monospace; font-size:10px;
   letter-spacing:.16em; text-transform:uppercase;
   border:1px solid var(--line-2); background:transparent;
   color:var(--smoke); cursor:pointer;
   transition:all var(--t-fast);
+  font-size:14px;
 }
 .variant-pill:hover{ border-color: var(--line-2); color:var(--paper) }
 .variant-pill.active{
@@ -739,11 +740,11 @@ footer{
   display:grid; grid-template-columns: 1.4fr .7fr .7fr 1.2fr; gap:48px;
   padding-bottom:60px; border-bottom:1px solid var(--line);
 }
-.foot-brand img{ height:45px; margin-bottom:18px }
-.foot-brand p{ color:var(--text-3); font-size:13.5px; max-width:280px; margin:0 0 22px }
-.foot-brand .socials{display:flex; gap:8px}
+.foot-brand img{ height:200px; width:auto; margin-bottom:18px  }
+.foot-brand p{ color:var(--text-3); font-size:16px; max-width:400px; margin:0 0 22px;}
+.foot-brand .socials{display:flex; gap:8px; justify-content:center;}
 .foot-brand .socials a{
-  width:38px; height:38px; border:1px solid var(--line-2); border-radius:50%;
+  width:45px; height:45px; border:1px solid var(--line-2); border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   transition:all var(--t-fast);
 }
@@ -879,6 +880,44 @@ footer{
     radial-gradient(80% 100% at 100% 0%, rgba(255,122,26,.12), transparent 60%),
     linear-gradient(180deg, #1a0d05 0%, #14080a 100%);
   border-color: color-mix(in oklab, var(--accent) 30%, var(--line));
+}
+
+/* ── Per-city gradient skins ── */
+
+/* Tegucigalpa — dark red */
+.city-card--tegus{
+  background:
+    radial-gradient(90% 110% at 100% 0%, oklch(48% 0.20 15deg / .18), transparent 55%),
+    radial-gradient(50% 60% at 0% 100%, oklch(38% 0.14 22deg / .10), transparent 70%),
+    linear-gradient(160deg, oklch(6% 0.030 15deg) 0%, oklch(4% 0.010 260deg) 100%);
+  border-color: color-mix(in oklab, oklch(48% 0.20 15deg) 30%, var(--line));
+}
+.city-card--tegus:hover{
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 50px -20px oklch(48% 0.20 15deg / .35);
+}
+
+/* Gracias — chile / deep crimson */
+.city-card--gracias{
+  background:
+    radial-gradient(90% 110% at 100% 0%, oklch(56% 0.23 22deg / .16), transparent 55%),
+    radial-gradient(50% 60% at 0% 100%, oklch(38% 0.14 22deg / .09), transparent 70%),
+    linear-gradient(160deg, oklch(6% 0.028 22deg) 0%, oklch(4% 0.010 260deg) 100%);
+  border-color: color-mix(in oklab, var(--chile) 28%, var(--line));
+}
+.city-card--gracias:hover{
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 50px -20px color-mix(in oklab, var(--chile) 35%, transparent);
+}
+
+/* Lepaera — lime / acid green */
+.city-card--lepaera{
+  background:
+    radial-gradient(90% 110% at 100% 0%, oklch(76% 0.17 130deg / .12), transparent 55%),
+    radial-gradient(50% 60% at 0% 100%, oklch(60% 0.14 130deg / .07), transparent 70%),
+    linear-gradient(160deg, oklch(6% 0.020 130deg) 0%, oklch(4% 0.010 260deg) 100%);
+  border-color: color-mix(in oklab, var(--lime) 25%, var(--line));
+}
+.city-card--lepaera:hover{
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 50px -20px color-mix(in oklab, var(--lime) 30%, transparent);
 }
 .city-card.is-featured::before{
   content:"Mayor distribución";

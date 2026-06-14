@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import LogoWordmark from '../images/logo-wordmark.webp';
+import LogoWordmark from '../images/logo_no_background.png';
 ---
 
 <nav class="nav">
   <a href="#" class="nav-logo" aria-label="PIKANTÉ" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });">
-    <Image src={LogoWordmark} alt="PIKANTÉ" width={2813} height={1875} loading="eager" />
+    <Image src={LogoWordmark} alt="PIKANTÉ" width={2813} height={2815} loading="eager" />
   </a>
   <div class="nav-links">
     <a href="#sabores">Sabores</a>

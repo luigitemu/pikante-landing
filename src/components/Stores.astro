@@ -1,16 +1,20 @@
 ---
+const updatedDate = new Date().toLocaleDateString('es-HN', { month: 'short', year: 'numeric' });
+
 const cities = [
   {
     city: 'Tegucigalpa',
     dept: 'Francisco Morazán',
     code: 'TGU',
     featured: false,
+    class: 'city-card--tegus',
     places: [
       { name: 'Carnicería El Corte', type: 'Carnicería' },
     ],
   },
   {
     city: 'Gracias',
+    class: 'city-card--gracias',
     dept: 'Lempira',
     code: 'GRA',
     featured: true,
@@ -27,6 +31,7 @@ const cities = [
   },
   {
     city: 'Lepaera',
+    class: 'city-card--lepaera',
     dept: 'Lempira',
     code: 'LPA',
     featured: false,
@@ -58,14 +63,14 @@ const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
           <span>·</span>
           <span><b>{totalPlaces}</b> puntos activos</span>
           <span>·</span>
-          <span>Actualizado · May 2026</span>
+          <span>Actualizado · {updatedDate}</span>
         </div>
       </div>
 
       <div class="city-grid">
         {cities.map((c, i) => (
           <article
-            class={`city-card reveal${c.featured ? ' is-featured' : ''}`}
+            class={`city-card reveal${c.featured ? ' is-featured' : ''} ${c.class}`}
             style={`transition-delay:${i * 0.06}s`}
           >
             <header class="city-card-head">
@@ -104,7 +109,7 @@ const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
     <!-- CTA — proveedor -->
     <div class="stores-cta reveal">
       <div class="stores-cta-text">
-        <h4>Únete a la familia PIKANTÉ y sé parte del sabor que prende.</h4>
+        <h4>Únete a la familia PIKANTÉ y se parte del sabor que prende.</h4>
         <p>Producto 5 estrellas, 100% hondureño.</p>
       </div>
       <a class="btn btn-primary" href="https://wa.me/+50497864648" target="_blank" rel="noopener noreferrer">

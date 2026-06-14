@@ -91,15 +91,14 @@ export default function PrepVideo() {
         </div>
       </div>
       <aside className="prep-video-side">
-        <span className="mono accent">Look · Sound · Feel</span>
+        <span className="mono accent">Party · Friends · Vibes</span>
         <h3>
           Mírala
           <br />
           <em>en acción.</em>
         </h3>
         <p>
-          Del refrigerador al brindis en menos de lo que tarda un meme en hacerse viral. Sirve,
-          mezcla, prende todo.
+        15 segundos son suficientes para que te prepares la mejor michelada , Pikanté. 
         </p>
       </aside>
     </div>

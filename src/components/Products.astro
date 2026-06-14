@@ -3,6 +3,8 @@ import { Flame } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import ProductLimes from '../images/product-limes.webp';
 import LifestyleNight from '../images/lifestyle-night.webp';
+
+const FlameSize = 20;
 ---
 
 <section class="products" id="sabores">
@@ -12,7 +14,7 @@ import LifestyleNight from '../images/lifestyle-night.webp';
         <span class="eyebrow">01 / Sabores</span>
         <h2>Elegí tu<br/><em>PIKANTÉ favorito</em></h2>
       </div>
-      <p>Dos sabores. Tres presentaciones. Diferentes formas de prender.</p>
+      <p>Dos sabores. Tres presentaciones. Diferentes formas de disfrutarlo.</p>
     </div>
     <div class="prod-grid">
       <!-- Original -->
@@ -23,7 +25,7 @@ import LifestyleNight from '../images/lifestyle-night.webp';
         </div>
         <div class="prod-body">
           <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          <h3>Picante</h3>
+          <h3>Versión picante</h3>
           <p>La mas pedida por todos a base de clamato, picor intenso, limon  y salsas especiales.</p>
           <div class="prod-variants">
             <button class="variant-pill" data-variant="v250">250ml</button>
@@ -32,11 +34,11 @@ import LifestyleNight from '../images/lifestyle-night.webp';
           </div>
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 3 de 5">
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
             </span>
           </div>
         </div>
@@ -76,7 +78,7 @@ import LifestyleNight from '../images/lifestyle-night.webp';
         </div>
         <div class="prod-body">
           <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          <h3>Suave</h3>
+          <h3>Versión suave</h3>
           <p>Algo suave diseñado para tu paladar a base de clamato, picor suave, limón y salsas especiales.</p>
           <div class="prod-variants">
             <button class="variant-pill" data-variant="v250">250ml</button>
@@ -85,11 +87,11 @@ import LifestyleNight from '../images/lifestyle-night.webp';
           </div>
           <div class="prod-row2">
             <span class="chiles" aria-label="Picante 2 de 5">
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
+              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
             </span>
           </div>
         </div>
