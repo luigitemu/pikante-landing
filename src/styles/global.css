@@ -109,7 +109,7 @@ nav.nav{
   backdrop-filter:blur(8px);
 }
 .nav-logo{display:flex; align-items:center; gap:10px}
-.nav-logo img{height:40px; width:auto}
+.nav-logo img{height:60px; width:auto}
 .nav-links{display:flex; gap:32px}
 .nav-links a{
   font-size:13px; letter-spacing:.06em; color:var(--text-2);
@@ -120,7 +120,7 @@ nav.nav{
   display:flex; align-items:center; gap:18px;
 }
 .nav-socials a{
-  color:var(--text-2); display:flex; align-items:center;
+  color:white; display:flex; align-items:center;
   transition:color var(--t-fast);
 }
 .nav-socials a:hover{ color:var(--white) }
