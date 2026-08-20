@@ -1,52 +1,41 @@
 ---
-import { Image } from 'astro:assets';
-import ProductLimes from '../images/pikante_escarcha.webp';
-import PrepOverhead from '../images/pikante_hielo.webp';
-import HeroFire from '../images/hero-fire.webp';
+import { sanity, urlFor } from '../lib/sanity';
+import type { Image as SanityImage } from '@sanity/types';
+
+type HowToDoc = {
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  intro: string;
+  steps: { stepLabel: string; title: string; description: string; image: SanityImage & { alt: string } }[];
+};
+
+const howTo = await sanity.fetch<HowToDoc>('*[_id == "howTo"][0]');
 ---
+
 <section class="how" id="preparar">
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow">02 / Cómo se prepara</span>
-        <h2>Tres pasos.<br/><em>Cero pretexto.</em></h2>
+        <span class="eyebrow">{howTo.eyebrow}</span>
+        <h2>{howTo.headlinePrefix}<br/><em>{howTo.headlineEmphasis}</em></h2>
       </div>
-      <p>15 segundos son suficientes para que te prepares la mejor michelada Pikanté.</p>
+      <p>{howTo.intro}</p>
     </div>
     <div class="steps">
-      <article class="step reveal">
-        <div class="step-photo">
-          <span class="num">01</span>
-          <Image src={ProductLimes} alt="Escarchar el vaso con limon y chile" width={1024} height={1536} loading="lazy" />
-        </div>
-        <div class="step-body">
-          <span class="mono">Paso 01</span>
-          <h3>Escarcha el vaso</h3>
-          <p>Chamoy al borde, escarchado con tajín.</p>
-        </div>
-      </article>
-      <article class="step reveal" style="transition-delay:.08s">
-        <div class="step-photo">
-          <span class="num">02</span>
-          <Image src={PrepOverhead} alt="Agregar cerveza y PIKANTÉ" width={1536} height={1024} loading="lazy" />
-        </div>
-        <div class="step-body">
-          <span class="mono">Paso 02</span>
-          <h3>Hielo + PIKANTÉ + Cerveza</h3>
-          <p>Hielo al tope, 100 ml del michemix PIKANTÉ y completa con tu cerveza favorita.</p>
-        </div>
-      </article>
-      <article class="step reveal" style="transition-delay:.16s">
-        <div class="step-photo">
-          <span class="num">03</span>
-          <Image src={HeroFire} alt="Disfrutar la michelada PIKANTÉ" width={1024} height={1536} loading="lazy" />
-        </div>
-        <div class="step-body">
-          <span class="mono">Paso 03</span>
-          <h3>¡Disfruta de un elixirrr!</h3>
-          <p>¡Y brinda por la buena vida!</p>
-        </div>
-      </article>
+      {howTo.steps?.map((step, i) => (
+        <article class="step reveal" style={i > 0 ? `transition-delay:${i * 0.08}s` : undefined}>
+          <div class="step-photo">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <img src={urlFor(step.image).width(1024).auto('format').url()} alt={step.image.alt} loading="lazy" />
+          </div>
+          <div class="step-body">
+            <span class="mono">{step.stepLabel}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>

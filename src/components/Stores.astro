@@ -1,47 +1,32 @@
 ---
+import { sanity } from '../lib/sanity';
+
+type StoresDoc = {
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  intro: string;
+  cities: {
+    city: string;
+    dept: string;
+    code: string;
+    featured: boolean;
+    places: { name: string; type: string }[];
+  }[];
+  ctaHeading: string;
+  ctaSubtext?: string;
+  ctaButtonLabel: string;
+  ctaButtonHref: string;
+};
+
+const stores = await sanity.fetch<StoresDoc>('*[_id == "stores"][0]');
+const cities = stores.cities ?? [];
+const totalPlaces = cities.reduce((n, c) => n + (c.places?.length ?? 0), 0);
 const updatedDate = new Date().toLocaleDateString('es-HN', { month: 'short', year: 'numeric' });
 
-const cities = [
-  {
-    city: 'Tegucigalpa',
-    dept: 'Francisco Morazán',
-    code: 'TGU',
-    featured: false,
-    class: 'city-card--tegus',
-    places: [
-      { name: 'Carnicería El Corte', type: 'Carnicería' },
-    ],
-  },
-  {
-    city: 'Gracias',
-    class: 'city-card--gracias',
-    dept: 'Lempira',
-    code: 'GRA',
-    featured: true,
-    places: [
-      { name: 'Texaco Las Torres',        type: 'Estación' },
-      { name: 'Supermercado Denisse',     type: 'Supermercado' },
-      { name: 'Minisuper Yaqui',          type: 'Minisuper' },
-      { name: 'Supermercado Sarahí',       type: 'Supermercado' },
-      { name: 'Supermercado Mi Súper',    type: 'Supermercado' },
-      { name: 'Market Punto Básico',      type: 'Market' },
-      { name: 'Inversiones DAYSA',        type: 'Distribuidora' },
-      { name: 'Restaurante Villa Alicia', type: 'Restaurante' },
-    ],
-  },
-  {
-    city: 'Lepaera',
-    class: 'city-card--lepaera',
-    dept: 'Lempira',
-    code: 'LPA',
-    featured: false,
-    places: [
-      { name: "Elena's Bakery", type: 'Repostería' },
-    ],
-  },
-];
-
-const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
+function slugify(s: string) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-');
+}
 ---
 
 <section class="stores" id="proveedores">
@@ -49,10 +34,10 @@ const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
 
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow">04 / Dónde encontrarlo</span>
-        <h2>Encuéntralo<br/><em>aquí cerca.</em></h2>
+        <span class="eyebrow">{stores.eyebrow}</span>
+        <h2>{stores.headlinePrefix}<br/><em>{stores.headlineEmphasis}</em></h2>
       </div>
-      <p>PIKANTÉ ya está en pulperías, supermercados y restaurantes de tu zona. Si no lo ves en tu tiendita, pídelo — andamos creciendo.</p>
+      <p>{stores.intro}</p>
     </div>
 
     <div class="stores-block reveal">
@@ -70,7 +55,7 @@ const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
       <div class="city-grid">
         {cities.map((c, i) => (
           <article
-            class={`city-card reveal${c.featured ? ' is-featured' : ''} ${c.class}`}
+            class={`city-card reveal${c.featured ? ' is-featured' : ''} city-card--${slugify(c.city)}`}
             style={`transition-delay:${i * 0.06}s`}
           >
             <header class="city-card-head">
@@ -106,14 +91,13 @@ const totalPlaces = cities.reduce((n, c) => n + c.places.length, 0);
       </div>
     </div>
 
-    <!-- CTA — proveedor -->
     <div class="stores-cta reveal">
       <div class="stores-cta-text">
-        <h4>Únete a la familia PIKANTÉ y se parte del sabor que prende.</h4>
-        <p>Producto 5 estrellas, 100% hondureño.</p>
+        <h4>{stores.ctaHeading}</h4>
+        {stores.ctaSubtext && <p>{stores.ctaSubtext}</p>}
       </div>
-      <a class="btn btn-primary" href="https://wa.me/+50497864648" target="_blank" rel="noopener noreferrer">
-        Contáctanos
+      <a class="btn btn-primary" href={stores.ctaButtonHref} target="_blank" rel="noopener noreferrer">
+        {stores.ctaButtonLabel}
         <span class="arrow">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 8h10M9 4l4 4-4 4"/>

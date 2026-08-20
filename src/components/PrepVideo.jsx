@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function PrepVideo() {
+export default function PrepVideo({ kicker, tag, headingPrefix, headingEmphasis, description }) {
   const ref = useRef(null);
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
@@ -56,7 +56,7 @@ export default function PrepVideo() {
           preload="metadata"
         />
         <div className="prep-video-overlay">
-          <span className="prep-video-tag">Reel · 00:08 al primer trago</span>
+          <span className="prep-video-tag">{tag}</span>
           <div className="prep-video-controls">
             <button
               onClick={toggle}
@@ -91,15 +91,13 @@ export default function PrepVideo() {
         </div>
       </div>
       <aside className="prep-video-side">
-        <span className="mono accent">Party · Friends · Vibes</span>
+        <span className="mono accent">{kicker}</span>
         <h3>
-          Mírala
+          {headingPrefix}
           <br />
-          <em>en acción.</em>
+          <em>{headingEmphasis}</em>
         </h3>
-        <p>
-        15 segundos son suficientes para que te prepares la mejor michelada , Pikanté. 
-        </p>
+        <p>{description}</p>
       </aside>
     </div>
   );

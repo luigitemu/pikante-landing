@@ -1,10 +1,16 @@
+---
+import { sanity } from '../lib/sanity';
+
+const marquee = await sanity.fetch<{ items: string[] }>('*[_id == "marquee"][0]{ items }');
+const items = marquee?.items ?? [];
+---
+
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>PIKANTÉ</span><span class="dot"></span>
-    <span>Hecho en Honduras</span><span class="dot"></span>
-    <span>Michemix</span><span class="dot"></span>
-    <span>Hecho en Honduras</span><span class="dot"></span>
-    <span>Sabor auténtico</span><span class="dot"></span>
-    <span>Micheladas</span><span class="dot"></span>
+    {items.map((item) => (
+      <>
+        <span>{item}</span><span class="dot"></span>
+      </>
+    ))}
   </div>
 </div>

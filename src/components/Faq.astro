@@ -1,58 +1,40 @@
+---
+import { sanity } from '../lib/sanity';
+import { richTextToHtml } from '../lib/portableText';
+import type { PortableTextBlock } from '@portabletext/types';
+
+type FaqDoc = {
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  intro: string;
+  items: { question: string; answer: PortableTextBlock[] }[];
+};
+
+const faq = await sanity.fetch<FaqDoc>('*[_id == "faq"][0]');
+---
+
 <section class="faq" id="faq">
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow">05 / Dudas frecuentes</span>
-        <h2>Preguntas<br/><em>Frecuentes.</em></h2>
+        <span class="eyebrow">{faq.eyebrow}</span>
+        <h2>{faq.headlinePrefix}<br/><em>{faq.headlineEmphasis}</em></h2>
       </div>
-      <p>Lo que  nos pregunta antes, durante y después de la primera botella.</p>
+      <p>{faq.intro}</p>
     </div>
     <div class="faq-list reveal">
-      <div class="faq-item" data-open="true">
-        <button class="faq-q" aria-expanded="true">
-          <span>¿Con qué cerveza se sirve?</span>
-          <span class="plus"></span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">PIKANTÉ está diseñada para que la disfrutes con tu cerveza favorita. Si la cerveza está fría, la michelada está lista.</div>
+      {faq.items?.map((item, i) => (
+        <div class="faq-item" data-open={i === 0 ? 'true' : undefined}>
+          <button class="faq-q" aria-expanded={i === 0 ? 'true' : 'false'}>
+            <span>{item.question}</span>
+            <span class="plus"></span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner" set:html={richTextToHtml(item.answer)} />
+          </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span>¿Qué tan picante es?</span>
-          <span class="plus"></span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">La versión Suave no pica mucho (1/5); la versión Picante pica rico (3/5). Todas están calibradas para que las disfrutes, no para que sufras.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span>¿Tiene alcohol?</span>
-          <span class="plus"></span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">No. PIKANTÉ es el mix &mdash; tú le pones la cerveza. La botella sola es 0% alcohol. Así que también funciona para que disfrutes tus chamoyadas o cualquier cóctel de tu preferencia.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span>¿Cuánto dura?</span>
-          <span class="plus"></span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Refrigerada hasta 4 meses. Abierta 30 días bajo refrigeración.</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span>¿Hacen envíos?</span>
-          <span class="plus"></span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">A los 18 departamentos de Honduras. Entregas a domicilio en 24-48 horas posteriores a tu pedido.</div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

@@ -1,7 +1,27 @@
 ---
-// import { Image } from 'astro:assets';
-// import HeroFire from '../images/hero-fire.webp';
 import PrepVideo from './PrepVideo';
+import { sanity } from '../lib/sanity';
+
+type HeroDoc = {
+  eyebrowLeft: string;
+  eyebrowRight: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  headlineMid: string;
+  headlineStroke: string;
+  ctaLabel: string;
+  ctaHref: string;
+  metrics: { value: string; label: string }[];
+  prepVideo: {
+    kicker?: string;
+    tag?: string;
+    headingPrefix?: string;
+    headingEmphasis?: string;
+    description?: string;
+  };
+};
+
+const hero = await sanity.fetch<HeroDoc>('*[_id == "hero"][0]');
 ---
 
 <header class="hero">
@@ -9,47 +29,37 @@ import PrepVideo from './PrepVideo';
     <div class="reveal">
       <div class="hero-eyebrow-row">
         <span class="dot"></span>
-        <span>Mix para michelada</span>
+        <span>{hero.eyebrowLeft}</span>
         <span style="color:var(--text-4)">/</span>
-        <span>Producto 100% Hondureño</span>
+        <span>{hero.eyebrowRight}</span>
       </div>
       <h1 class="h-display ">
-        El  Mejor<em class="flame-letter">Mix</em><br/>
-        para tus <span class="stroke">Micheladas</span>.
+        {hero.headlinePrefix} <em class="flame-letter">{hero.headlineEmphasis}</em><br/>
+        {hero.headlineMid} <span class="stroke">{hero.headlineStroke}</span>.
       </h1>
-      <!-- <p class="sub">
-        La Michelada perfecta para tus fiestas.
-      </p> -->
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#sabores">
-          Ver sabores
+        <a class="btn btn-primary" href={hero.ctaHref}>
+          {hero.ctaLabel}
           <span class="arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M13 5l7 7-7 7"/>
             </svg>
           </span>
         </a>
-        <!-- <a class="btn btn-ghost" href="#sabores">
-          Comprar ahora
-          <span class="arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M13 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a> -->
       </div>
       <div class="hero-meta">
-        <div><b>$</b><span>La más accesible del mercado</span></div>
-        <div><b>15s</b><span>Prepárala en tiempo record</span></div>
-        <div><b>HN</b><span>Hecho en Honduras</span></div>
+        {hero.metrics?.map((m) => (
+          <div><b>{m.value}</b><span>{m.label}</span></div>
+        ))}
       </div>
     </div>
-    <PrepVideo client:visible />
-    <!-- <div class="hero-photo reveal" style="transition-delay:.12s">
-      <Image src={HeroFire} alt="Michelada Pikanté con flamas" width={1024} height={1536} fetchpriority="high" loading="eager" />
-      
-      <span class="photo-tag">SKU-001 &middot; Original 320ml</span>
-    </div> -->
+    <PrepVideo
+      client:visible
+      kicker={hero.prepVideo?.kicker}
+      tag={hero.prepVideo?.tag}
+      headingPrefix={hero.prepVideo?.headingPrefix}
+      headingEmphasis={hero.prepVideo?.headingEmphasis}
+      description={hero.prepVideo?.description}
+    />
   </div>
-  <!-- <div class="hero-corner">Scroll &middot; Encender</div> -->
 </header>

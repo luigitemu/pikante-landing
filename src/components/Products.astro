@@ -1,101 +1,72 @@
 ---
 import { Flame } from '@lucide/astro';
-import { Image } from 'astro:assets';
-import ProductLimes from '../images/product-limes.webp';
-import LifestyleNight from '../images/lifestyle-night.webp';
+import { sanity, urlFor } from '../lib/sanity';
+import { richTextToHtml } from '../lib/portableText';
+import type { Image as SanityImage } from '@sanity/types';
+import type { PortableTextBlock } from '@portabletext/types';
 
 const FlameSize = 20;
+
+type ProductsDoc = {
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  intro: string;
+  items: {
+    name: string;
+    tag?: string;
+    description: PortableTextBlock[];
+    image: SanityImage & { alt: string };
+    heatLevel: number;
+    price250: string;
+    price570: string;
+    price1L: string;
+  }[];
+};
+
+const products = await sanity.fetch<ProductsDoc>('*[_id == "products"][0]');
 ---
 
 <section class="products" id="sabores">
   <div class="container">
     <div class="section-head reveal">
       <div>
-        <span class="eyebrow">01 / Sabores</span>
-        <h2>Elegí tu<br/><em>PIKANTÉ favorito</em></h2>
+        <span class="eyebrow">{products.eyebrow}</span>
+        <h2>{products.headlinePrefix}<br/><em>{products.headlineEmphasis}</em></h2>
       </div>
-      <p>Dos sabores. Tres presentaciones. Diferentes formas de disfrutarlo.</p>
+      <p>{products.intro}</p>
     </div>
     <div class="prod-grid">
-      <!-- Original -->
-      <article class="prod reveal">
-        <div class="prod-img">
-          <span class="prod-tag hot">Más vendido</span>
-          <Image src={ProductLimes} alt="PIKANTÉ Original" width={1024} height={1536} loading="lazy" />
-        </div>
-        <div class="prod-body">
-          <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          <h3>Versión picante</h3>
-          <p>La mas pedida por todos a base de clamato, picor intenso, limon  y salsas especiales.</p>
-          <div class="prod-variants">
-            <button class="variant-pill" data-variant="v250">250ml</button>
-            <button class="variant-pill active" data-variant="v570">570ml</button>
-            <button class="variant-pill" data-variant="v1l">1 Litro</button>
+      {products.items?.map((prod, i) => (
+        <article class="prod reveal" style={i > 0 ? `transition-delay:${i * 0.07}s` : undefined}>
+          <div class="prod-img">
+            {prod.tag && <span class="prod-tag hot">{prod.tag}</span>}
+            <img src={urlFor(prod.image).width(1024).auto('format').url()} alt={prod.image.alt} loading="lazy" />
           </div>
-          <div class="prod-row2">
-            <span class="chiles" aria-label="Picante 3 de 5">
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-            </span>
+          <div class="prod-body">
+            <span
+              class="price"
+              data-v250={`L ${prod.price250} · 250ml`}
+              data-v570={`L ${prod.price570} · 570ml`}
+              data-v1l={`L ${prod.price1L} · 1L`}
+            >L {prod.price570} <span style="color:var(--text-4)">&middot; 570ml</span></span>
+            <h3>{prod.name}</h3>
+            <p set:html={richTextToHtml(prod.description)} />
+            <div class="prod-variants">
+              <button class="variant-pill" data-variant="v250">250ml</button>
+              <button class="variant-pill active" data-variant="v570">570ml</button>
+              <button class="variant-pill" data-variant="v1l">1 Litro</button>
+            </div>
+            <div class="prod-row2">
+              <span class="chiles" aria-label={`Picante ${prod.heatLevel} de 5`}>
+                {Array.from({ length: 5 }).map((_, n) => (
+                  <Flame width={FlameSize} height={FlameSize} fill="currentColor" class={`text-(--fire) ${n >= prod.heatLevel ? 'opacity-20' : ''}`} />
+                ))}
+              </span>
+            </div>
           </div>
-        </div>
-      </article>
-      <!-- Brutal -->
-      <!-- <article class="prod reveal" style="transition-delay:.07s">
-        <div class="prod-img">
-          <span class="prod-tag">Edicion 02</span>
-          <Image src={HeroFire} alt="PIKANTÉ Brutal" width={1024} height={1536} loading="lazy" />
-        </div>
-        <div class="prod-body">
-          <div class="prod-row1">
-            <h3>Brutal</h3>
-            <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          </div>
-          <p>Para los que no se andan con rodeos. Habanero ahumado, chile morita, jugo de naranja agria.</p>
-          <div class="prod-variants">
-            <button class="variant-pill" data-variant="v250">250ml</button>
-            <button class="variant-pill active" data-variant="v570">570ml</button>
-            <button class="variant-pill" data-variant="v1l">1 Litro</button>
-          </div>
-          <div class="prod-row2">
-            <span class="chiles" aria-label="Picante 5 de 5">
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-              <Flame width={16} height={16} fill="currentColor" class='text-(--fire)' />
-            </span>
-          </div>
-        </div>
-      </article> -->
-      <!-- Verde -->
-      <article class="prod reveal" style="transition-delay:.14s">
-        <div class="prod-img">
-          <Image src={LifestyleNight} alt="PIKANTÉ Verde" width={2340} height={4160} loading="lazy" />
-        </div>
-        <div class="prod-body">
-          <span class="price" data-v250="L 70 · 250ml" data-v570="L 150 · 570ml" data-v1l="L 260 · 1L">L 150 <span style="color:var(--text-4)">&middot; 570ml</span></span>
-          <h3>Versión suave</h3>
-          <p>Algo suave diseñado para tu paladar a base de clamato, picor suave, limón y salsas especiales.</p>
-          <div class="prod-variants">
-            <button class="variant-pill" data-variant="v250">250ml</button>
-            <button class="variant-pill active" data-variant="v570">570ml</button>
-            <button class="variant-pill" data-variant="v1l">1 Litro</button>
-          </div>
-          <div class="prod-row2">
-            <span class="chiles" aria-label="Picante 2 de 5">
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-              <Flame width={FlameSize} height={FlameSize} fill="currentColor" class='opacity-20 text-(--fire)' />
-            </span>
-          </div>
-        </div>
-      </article>
+        </article>
+      ))}
     </div>
   </div>
 </section>

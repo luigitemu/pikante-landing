@@ -1,22 +1,27 @@
 ---
-import { Image } from 'astro:assets';
-import LifestylePool from '../images/lifestyle-pool.webp';
+import { sanity, urlFor } from '../lib/sanity';
+import type { Image as SanityImage } from '@sanity/types';
+
+type LifestyleDoc = {
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  tags: string[];
+  backgroundImage: SanityImage & { alt: string };
+};
+
+const lifestyle = await sanity.fetch<LifestyleDoc>('*[_id == "lifestyle"][0]');
 ---
 
 <section class="life reveal" id="vida">
   <div class="life-bg">
-    <Image src={LifestylePool} alt="PIKANTÉ en la fiesta" width={2813} height={1876} loading="lazy" />
+    <img src={urlFor(lifestyle.backgroundImage).width(2813).auto('format').url()} alt={lifestyle.backgroundImage.alt} loading="lazy" />
   </div>
   <div class="life-content">
-    <span class="eyebrow">05 / Vida PIKANTÉ</span>
-    <h2>PIKANTÉ no se toma.<br/><em>Se disfruta.</em></h2>
+    <span class="eyebrow">{lifestyle.eyebrow}</span>
+    <h2>{lifestyle.headlinePrefix}<br/><em>{lifestyle.headlineEmphasis}</em></h2>
     <div class="tags">
-      <span>Rooftop</span>
-      <span>Asados</span>
-      <span>Elixir</span>
-      <span>Amigos</span>
-      <span>Después de la potra</span>
-      <span>Party</span>
+      {lifestyle.tags?.map((tag) => <span>{tag}</span>)}
     </div>
   </div>
 </section>
